@@ -12,11 +12,9 @@ server {
     listen 0.0.0.0:80;
     listen [::]:80;
 
-    server_name notquitehuman.local notquitehuman.co.uk www.notquitehuman.co.uk;
+    server_name example.local example.co.uk www.example.co.uk;
 
-    location /.well-known/acme-challenge/ {
-        root /var/www/certbot;
-    }
+    # acme-challenge goes here
 }
 
 server {
@@ -25,15 +23,15 @@ server {
     #ipv6
     listen [::]:443 ssl http2;
 
-    server_name notquitehuman.co.uk www.notquitehuman.co.uk;
+    server_name example.co.uk www.example.co.uk;
 
     error_log /var/log/nginx/error.log debug;
     access_log /var/log/nginx/access.log main;
 
-    root /var/www/notquitehuman/public;
+    root /var/www/example/public;
 
-    ssl_certificate /etc/letsencrypt/live/notquitehuman.co.uk/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/notquitehuman.co.uk/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/example.co.uk/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.co.uk/privkey.pem;
 
     location = /.git/ {
         return 404;
