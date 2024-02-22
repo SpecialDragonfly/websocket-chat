@@ -10,6 +10,13 @@ import java.io.IOException;
 
 public class MyTextHandler extends TextWebSocketHandler {
 
+    private final String foo;
+
+    public MyTextHandler(String foo) {
+
+        this.foo = foo;
+    }
+
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
         System.out.printf("Connection established on session: %s%n", session.getId());
