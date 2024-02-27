@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.*;
+import orme.dominic.chatexample.config.handler.HeartbeatHandler;
 import orme.dominic.chatexample.config.handler.MyTextHandler;
 
 @Configuration
@@ -14,11 +15,16 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(textHandler(),"/chat-example").setAllowedOrigins("*");
-        registry.addHandler(textHandler(), "/heartbeat").setAllowedOrigins("*");
+        registry.addHandler(heartbeatHandler(), "/heartbeat").setAllowedOrigins("*");
     }
 
     @Bean
     public WebSocketHandler textHandler() {
         return new MyTextHandler();
+    }
+
+    @Bean
+    public WebSocketHandler heartbeatHandler() {
+        return new HeartbeatHandler();
     }
 }
