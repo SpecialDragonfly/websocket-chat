@@ -26,6 +26,9 @@ public class MyTextHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws InterruptedException, IOException {
         System.out.println("Received" + message.getPayload());
         String payload = message.getPayload();
+        if (payload.equals("!!heartbeat!")) {
+            return;
+        }
         Thread.sleep(1000); // simulated delay
         String returned = "{\"message\":\"Hello, " + HtmlUtils.htmlEscape(payload) + "!\"}";
         session.sendMessage(new TextMessage(returned));
