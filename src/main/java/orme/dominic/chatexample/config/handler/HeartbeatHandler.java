@@ -8,7 +8,7 @@ import org.springframework.web.util.HtmlUtils;
 
 import java.io.IOException;
 
-public class MyTextHandler extends TextWebSocketHandler {
+public class HeartbeatHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) {
         System.out.printf("Connection established on session: %s%n", session.getId());
@@ -16,10 +16,7 @@ public class MyTextHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws InterruptedException, IOException {
-        String payload = message.getPayload();
         Thread.sleep(1000); // simulated delay
-        String returned = "{\"message\":\"Hello, " + HtmlUtils.htmlEscape(payload) + "!\"}";
-        session.sendMessage(new TextMessage(returned));
     }
 
     @Override

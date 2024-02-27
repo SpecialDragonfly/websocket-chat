@@ -13,11 +13,12 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(textHandler("1"),"/chat-example").setAllowedOrigins("*");
+        registry.addHandler(textHandler(),"/chat-example").setAllowedOrigins("*");
+        registry.addHandler(textHandler(), "/heartbeat").setAllowedOrigins("*");
     }
 
     @Bean
-    public WebSocketHandler textHandler(String value) {
-        return new MyTextHandler(value);
+    public WebSocketHandler textHandler() {
+        return new MyTextHandler();
     }
 }
