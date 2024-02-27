@@ -24,9 +24,11 @@ public class MyTextHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws InterruptedException, IOException {
+        System.out.println("Received" + message.getPayload());
         String payload = message.getPayload();
         Thread.sleep(1000); // simulated delay
-        session.sendMessage(new TextMessage("Hello, " + HtmlUtils.htmlEscape(payload) + "!"));
+        String returned = "{\"message\":\"Hello, " + HtmlUtils.htmlEscape(payload) + "!\"}";
+        session.sendMessage(new TextMessage(returned));
     }
 
     @Override
