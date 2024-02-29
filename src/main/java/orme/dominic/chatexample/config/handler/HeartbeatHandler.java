@@ -4,9 +4,6 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-import org.springframework.web.util.HtmlUtils;
-
-import java.io.IOException;
 
 public class HeartbeatHandler extends TextWebSocketHandler {
     @Override
@@ -15,7 +12,7 @@ public class HeartbeatHandler extends TextWebSocketHandler {
     }
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws InterruptedException, IOException {
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws InterruptedException {
         Thread.sleep(1000); // simulated delay
     }
 
